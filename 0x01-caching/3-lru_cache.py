@@ -22,12 +22,12 @@ class LRUCache(Base):
                 print("DISCARD: " + lru)
 
     def get_lru(self):
-        """ get lru """
+        """ get lru from __lru"""
         mn = min(list(self.__lru.values()))
         return list(self.__lru.keys())[list(self.__lru.values()).index(mn)]
 
     def put_lru(self, key):
-        """ put lru """
+        """ put lru into __lru"""
         if len(list(self.__lru.keys())):
             mx = max(list(self.__lru.values()))
             self.__lru[key] = mx + 1
