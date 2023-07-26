@@ -24,13 +24,13 @@ class LFUCache(Base):
                 print("DISCARD: " + lfu)
 
     def get_lru(self, mins):
-        """ get lru """
+        """ get lru from __lru"""
         mn = min([val for val in list(self.__lru.values())
                   if list(self.__lru.values()).index(val) in mins])
         return list(self.__lru.keys())[list(self.__lru.values()).index(mn)]
 
     def put_lru(self, key):
-        """ put lru """
+        """ put lru into __lru"""
         if len(list(self.__lru.keys())):
             mx = max(list(self.__lru.values()))
             self.__lru[key] = mx + 1
@@ -38,7 +38,7 @@ class LFUCache(Base):
             self.__lru[key] = 0
 
     def get_lfu(self):
-        """ get lfu """
+        """ get lfu from __lru"""
         if not len(list(self.__lfu.keys())):
             return 0
         mn = min(list(self.__lfu.values()))
@@ -49,7 +49,7 @@ class LFUCache(Base):
         return list(self.__lfu.keys())[list(self.__lfu.values()).index(mn)]
 
     def put_lfu(self, key):
-        """ put lru """
+        """ put lru into __lru"""
         if key in list(self.__lfu.keys()):
             self.__lfu[key] = self.__lfu[key] + 1
         else:

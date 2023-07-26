@@ -22,14 +22,14 @@ class MRUCache(Base):
                 print("DISCARD: " + mru)
 
     def get_mru(self):
-        """ get mru """
+        """ get mru from __mru """
         if not len(list(self.cache_data.keys())):
             return 0
         mn = max(list(self.__mru.values()))
         return list(self.__mru.keys())[list(self.__mru.values()).index(mn)]
 
     def put_mru(self, key):
-        """ put mru """
+        """ put mru into __mru """
         if len(list(self.__mru.keys())):
             mx = max(list(self.__mru.values()))
             self.__mru[key] = mx + 1
