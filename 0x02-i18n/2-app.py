@@ -7,6 +7,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
+    """ the index page route """
     return render_template('2-index.html')
 
 
@@ -21,7 +22,7 @@ class Config(object):
 def get_locale():
     # Get the user's preferred languages from the request header
     user_languages = request.accept_languages.\
-            best_match(app.config['LANGUAGES'])i
+            best_match(app.config['LANGUAGES'])
 
     # Return the best match language or the default locale if none is found
     return user_languages or app.config['BABEL_DEFAULT_LOCALE']
