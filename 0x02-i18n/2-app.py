@@ -3,7 +3,8 @@
 from flask import Flask, render_template, request
 from flask_babel import Babel
 from typing import (List)
-app = Flask(__name__)
+app: Flask = Flask(__name__)
+babel: Babel = Babel(app)
 
 
 @app.route('/')
@@ -30,7 +31,6 @@ def get_locale() -> str:
     return user_languages or app.config['BABEL_DEFAULT_LOCALE']
 
 
-babel: Babel = Babel(app)
 app.config.from_object(Config)
 if __name__ == '__main__':
     app.run(debug=True)
