@@ -28,7 +28,7 @@ def get_locale() -> str:
         best_match(app.config['LANGUAGES'])
 
     # Return the best match language or the default locale if none is found
-    return user_languages or app.config['BABEL_DEFAULT_LOCALE']
+    return user_languages
 
 
 app.config.from_object(Config)
