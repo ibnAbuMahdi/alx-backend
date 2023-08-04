@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 """ 0-app """
 from flask import Flask, render_template
-app = Flask()
+app = Flask(__name__)
 
 
 @app.route('/')
 def home():
+    """ the index page route """
     return render_template('0-index.html')
 
 

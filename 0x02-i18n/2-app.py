@@ -20,7 +20,8 @@ class Config(object):
 @babel.localeselector
 def get_locale():
     # Get the user's preferred languages from the request header
-    user_languages = request.accept_languages.best_match(app.config['LANGUAGES'])
+    user_languages = request.accept_languages.\
+            best_match(app.config['LANGUAGES'])i
 
     # Return the best match language or the default locale if none is found
     return user_languages or app.config['BABEL_DEFAULT_LOCALE']
