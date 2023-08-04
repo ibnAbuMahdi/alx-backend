@@ -24,7 +24,7 @@ def get_locale() -> str:
     """ returns the locale of the client """
     # Get the user's preferred languages from the request header
     user_languages: str = request.accept_languages.\
-            best_match(app.config['LANGUAGES'])
+        best_match(app.config['LANGUAGES'])
 
     # Return the best match language or the default locale if none is found
     return user_languages or app.config['BABEL_DEFAULT_LOCALE']
