@@ -18,10 +18,10 @@ def home():
     """ the index page route """
     if g and g.user:
         message = _("logged_in_as") % {'username': g.user['name']}
-        return render_template('5-index.html', message=message)
+        return render_template('6-index.html', message=message)
     else:
         message = _("not_logged_in")
-        return render_template('5-index.html', message=message)
+        return render_template('6-index.html', message=message)
 
 
 class Config(object):

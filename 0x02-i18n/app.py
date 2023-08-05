@@ -31,6 +31,14 @@ class Config(object):
     BABEL_DEFAULT_TIMEZONE: str = 'UTC'
 
 
+def get_user_preferred_locale():
+    """ return preferred user locale """
+    user = g.user
+    if user and 'locale' in user:
+        return user['locale']
+    return None
+
+
 @babel.localeselector
 def get_locale() -> str:
     """ returns the locale of the client """
@@ -39,7 +47,16 @@ def get_locale() -> str:
     loc = request.args.get('locale')
     if loc and loc in app.config['LANGUAGES']:
         return loc
-    # Return the best match language or the default locale if none is found
+    user_preferred_locale = get_user_preferred_locale()
+    if user_preferred_locale and user_preferred_locale in \
+            app.config['LANGUAGES']:
+        return user_preferred_locale
+
+    # Check the request header for the preferred locale
+    request_locale = request.headers.get('Accept-Language')
+    if request_locale in app.config['LANGUAGES']:
+        return request_locale
+
     return lang or app.config['BABEL_DEFAULT_LOCALE']
 
 
